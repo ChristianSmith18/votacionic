@@ -6,4 +6,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content padding>
+  <ion-button expand="full" color="tertiary" (click)="abrirQR()">
+    Clickeame
+  </ion-button>
+  <p *ngIf="error">Es valido: {{ error }}</p>
+</ion-content>

@@ -1,41 +1,57 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab One
+      Crear Votaciones
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <ion-card class="welcome-card">
-      <ion-img src="/assets/shapes.svg"></ion-img>
-      <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to Ionic</ion-card-title>
-      </ion-card-header>
+<ion-content color="dark" padding>
+  <ion-refresher *ngIf="!showQR" slot="fixed" (ionRefresh)="actualizar($event)">
+    <ion-refresher-content pulling-text="Actualizar ID" refreshing-spinner="crescent"></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="!showQR">
+    <div class="card card-rounded">
+      <div class="card-body card-body-fix">
+
+        <!-- Identificador de la votación -->
+        <div class="text-center form-header default-color title-id">
+          <h3 class="text-id">ID de su votación: <b><a class="texto-copiado" (click)="copiarID()">{{ ID }}</a></b></h3>
+        </div>
+
+        <!-- Pregunta de la votación -->
+        <div class="form-group shadow-textarea">
+          <textarea id="myTextarea" class="form-control z-depth-1" rows="5" placeholder="Escriba su pregunta aquí..."></textarea>
+        </div>
+
+
+        <!-- Botones de la votación -->
+        <div class="text-center">
+          <button type="button" class="btn btn-info waves-effect waves-light" (click)="genvot()">Generar
+            votación</button>
+        </div>
+
+        <!-- <div class="text-center">
+        <button type="button" class="btn btn-success waves-effect waves-light">SI</button>
+        <button type="button" class="btn btn-danger waves-effect waves-light">NO</button>
+      </div> -->
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showQR" text-center>
+    <ion-card color="medium">
       <ion-card-content>
-        <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
+        <img [src]="imgSrc" />
       </ion-card-content>
+      <ion-card-header>
+        <ion-card-title>Votación creada con exito!</ion-card-title>
+        <p><b>ID: <a class="texto-copiado" (click)="copiarID()">{{ ID }}</a></b></p>
+      </ion-card-header>
+      <div class="text-center">
+        <button type="button" class="btn btn-default waves-effect waves-light fix-padding" (click)="clearAll()">Generar otra votación</button>
+      </div>
     </ion-card>
-    <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Resources</ion-label>
-      </ion-list-header>
-      <ion-item href="https://ionicframework.com/docs/">
-        <ion-icon slot="start" color="medium" name="book"></ion-icon>
-        <ion-label>Ionic Documentation</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/building/scaffolding">
-        <ion-icon slot="start" color="medium" name="build"></ion-icon>
-        <ion-label>Scaffold Out Your App</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/layout/structure">
-        <ion-icon slot="start" color="medium" name="grid"></ion-icon>
-        <ion-label>Change Your App Layout</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/theming/basics">
-        <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
-        <ion-label>Theme Your App</ion-label>
-      </ion-item>
-    </ion-list>
+  </div>
 </ion-content>
