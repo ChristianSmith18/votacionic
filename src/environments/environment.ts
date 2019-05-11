@@ -6,6 +6,16 @@ export const environment = {
   production: false
 };
 
+export const firebaseConfig = {
+  apiKey: 'AIzaSyDsEcKEMabzQqBKm77FxPpyMwI2qx9Duaw',
+  authDomain: 'votacionic.firebaseapp.com',
+  databaseURL: 'https://votacionic.firebaseio.com',
+  projectId: 'votacionic',
+  storageBucket: 'votacionic.appspot.com',
+  messagingSenderId: '727597034034',
+  appId: '1:727597034034:web:866606b8151bc0d2'
+};
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

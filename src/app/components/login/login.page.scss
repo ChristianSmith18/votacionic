@@ -1,0 +1,19 @@
+.icon {
+  display: block!important;
+  margin-left: auto!important;
+  margin-right: auto!important;
+  width:55%!important;
+}
+
+.btn {
+  border-radius: 10rem !important;
+}
+
+@media (min-width:500px) {
+  .card {
+    display: block!important;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    width:70%!important;
+  } 
+}

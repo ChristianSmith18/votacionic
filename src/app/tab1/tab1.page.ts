@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
+
+// Metodos Reciclados
+import { MethodsService } from '../services/methods.service';
+
 
 // Plugins
 import { Clipboard } from '@ionic-native/clipboard/ngx';
@@ -18,16 +21,16 @@ export class Tab1Page implements OnInit {
 
   constructor(
     private clipboard: Clipboard,
-    public toastCtrl: ToastController,
     public loadCtrl: LoadingController,
-    private screenOrientation: ScreenOrientation
+    private screenOrientation: ScreenOrientation,
+    public metodos: MethodsService
   ) {}
 
   ngOnInit() {
     this.screenOrientation
       .lock(this.screenOrientation.ORIENTATIONS.PORTRAIT)
       .catch(() => {
-        this.presentToast('Error: Rotación de pantalla no disponible.', 1.5, 'danger');
+        this.metodos.presentToast('Error: Rotación de pantalla no disponible.', 1.5, 'danger');
       });
   }
 
@@ -36,7 +39,7 @@ export class Tab1Page implements OnInit {
     // Convert it to base 36 (numbers + letters), and grab the first 9 characters
     // after the decimal.
     let textoID = '';
-    while (!this.verificador(textoID)) {
+    while (!this.metodos.verificador(textoID)) {
       textoID =
         'u' +
         Math.random()
@@ -62,21 +65,11 @@ export class Tab1Page implements OnInit {
     this.clipboard
       .copy(this.ID)
       .then(() => {
-        this.presentToast('Texto copiado en el portapapeles.', 1.5, 'medium');
+        this.metodos.presentToast('Texto copiado en el portapapeles.', 1.5, 'medium');
       })
       .catch(() => {
-        this.presentToast('Error: Dispositivo no compatible.', 1.5, 'danger');
+        this.metodos.presentToast('Error: Dispositivo no compatible.', 1.5, 'danger');
       });
-  }
-
-  async presentToast(texto: string = '', duracion: number = 0, tipo: string) {
-    const toast = await this.toastCtrl.create({
-      message: texto,
-      duration: duracion * 1000,
-      color: tipo,
-      position: 'top'
-    });
-    toast.present();
   }
 
   async presentLoading() {
@@ -93,7 +86,7 @@ export class Tab1Page implements OnInit {
     const textArea: string =
       (document.getElementById('myTextarea') as HTMLInputElement).value + '';
     if (textArea.replace(' ', '') === '') {
-      this.presentToast('Escriba una pregunta antes de continuar', 2, 'danger');
+      this.metodos.presentToast('Escriba una pregunta antes de continuar', 2, 'danger');
     } else {
       this.imgSrc = `https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${
         this.ID
@@ -105,24 +98,5 @@ export class Tab1Page implements OnInit {
   clearAll() {
     this.ID = this.createID();
     this.showQR = false;
-  }
-
-  verificador(texto: string) {
-    if (texto.length !== 18) {
-      return false;
-    }
-    if (texto[0] !== 'u') {
-      return false;
-    }
-    if (texto[11] !== 'a') {
-      return false;
-    }
-    if (texto[12] !== 'c') {
-      return false;
-    }
-    if (texto[17] !== 's') {
-      return false;
-    }
-    return true;
   }
 }
