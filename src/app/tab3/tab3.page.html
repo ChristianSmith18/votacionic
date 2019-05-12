@@ -1,12 +1,32 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-title>
-      Tab Three
+      Historial
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="cerrarSesion()">Cerrar sesión</ion-button>
+      <ion-button color="secondary" (click)="presentAlertConfirm()">Cerrar sesión</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<!-- <ion-toolbar color="dark"> -->
+<!-- </ion-toolbar> -->
+<div class="segment-fix">
+  <ion-segment mode="ios" color="light" (ionChange)="segmentChanged($event)" padding>
+    <ion-segment-button mode="ios" value="myvotes" checked>
+      <ion-label>Mis Votaciones</ion-label>
+    </ion-segment-button>
+    <ion-segment-button mode="ios" value="others">
+      <ion-label>Otras Votaciones</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</div>
+
+<ion-content color="dark">
+  <ion-list mode="ios" color="dark">
+    <ion-item mode="ios" color="dark" *ngFor="let componente of [1,1,1,1,1,1,1,1,1,1,1,1]" routerLink="" detail>
+      <ion-icon mode="ios" color="secondary" slot="start" name="analytics"></ion-icon>
+      <ion-label>Votación de Cristian González</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

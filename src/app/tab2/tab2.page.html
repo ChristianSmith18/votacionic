@@ -1,14 +1,16 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Two
+  <ion-toolbar color="dark">
+    <ion-title text-center>
+      Scanear Votación
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-button expand="full" color="tertiary" (click)="abrirQR()">
-    Clickeame
-  </ion-button>
+<ion-content color="dark" padding>
+  <div class="text-center button-fix">
+    <button type="button" class="btn btn-info waves-effect waves-light" (click)="abrirQR()">
+      Abrir QRScanner
+    </button>
+  </div>
   <p *ngIf="error">Es valido: {{ error }}</p>
 </ion-content>

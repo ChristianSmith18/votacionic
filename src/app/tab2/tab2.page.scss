@@ -1,1 +1,13 @@
+.button-fix {
+  padding-top: 60%!important;
+}
 
+@media (min-width:500px) {
+  .button-fix {
+    padding-top: 20%!important;
+  }
+}
+
+.btn {
+  border-radius: 10rem !important;
+}
