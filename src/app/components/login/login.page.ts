@@ -20,10 +20,11 @@ export class LoginPage {
 
   onSubmitLogin() {
     if (this.user !== '' && this.password !== '') {
-      this.authService.createUser(this.user, this.password)
+      this.authService.login(this.user, this.password)
       .then(() => {
+        this.password = '';
         this.router.navigateByUrl('/tabs/tab1)');
-      }).catch(() => {
+      }).catch((err) => {
         this.metodos.presentToast('Error: Usuario o contraseña incorrectos.', 2 , 'danger');
         this.user = '';
         this.password = '';

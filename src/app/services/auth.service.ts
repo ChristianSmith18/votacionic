@@ -25,7 +25,15 @@ export class AuthService {
   createUser(email: string, password: string) {
     return new Promise((resolve, reject) => {
       this.authAFB.auth.createUserWithEmailAndPassword(email, password)
-      .then((event => { resolve(event); }))
+      .then(event => { resolve(event); })
+      .catch(err => { reject(err); });
+    });
+  }
+
+  signOut() {
+    return new Promise((resolve, reject) => {
+      this.authAFB.auth.signOut()
+      .then(() => { resolve(); })
       .catch(err => { reject(err); });
     });
   }
