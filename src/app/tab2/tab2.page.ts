@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-import { ToastController } from '@ionic/angular';
 
 // Metodos reciclados
 import { MethodsService } from '../services/methods.service';
@@ -10,10 +9,10 @@ import { MethodsService } from '../services/methods.service';
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page implements OnInit {
+export class Tab2Page {
   error = '';
 
-  ngOnInit() {
+  ionViewDidEnter() {
     this.abrirQR();
   }
   constructor(

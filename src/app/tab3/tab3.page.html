@@ -24,9 +24,9 @@
 
 <ion-content color="dark">
   <ion-list mode="ios" color="dark">
-    <ion-item mode="ios" color="dark" *ngFor="let componente of [1,1,1,1,1,1,1,1,1,1,1,1]" routerLink="" detail>
+    <ion-item mode="ios" color="dark" *ngFor="let votacion of votaciones" (click)="openVotacion(votacion)" detail>
       <ion-icon mode="ios" color="secondary" slot="start" name="analytics"></ion-icon>
-      <ion-label>Votación de Cristian González</ion-label>
+      <ion-label>Votación de {{ votacion.userName }}</ion-label>
     </ion-item>
   </ion-list>
 </ion-content>
