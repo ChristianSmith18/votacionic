@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Creación de usuario</ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="secondary" (click)="closeModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark" padding>
+  <div class="card card-rounded">
+    <div class="card-body card-body-fix">
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input autocapitalize="on" [(ngModel)]="nombre"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Apellidos</ion-label>
+        <ion-input [(ngModel)]="apellido"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Correo eléctronico</ion-label>
+        <ion-input [(ngModel)]="correo" type="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input [(ngModel)]="password" type="password"></ion-input>
+      </ion-item>
+      <div *ngIf="!(password.length >= 8) && password !== ''" class="text-center">
+        <ion-text color="danger">Faltan mínimo {{ 8 - password.length}} caracteres</ion-text>
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Confirmar contraseña</ion-label>
+        <ion-input [(ngModel)]="confirm" type="password" [disabled]="password === ''"></ion-input>
+      </ion-item>
+      <div *ngIf="password !== confirm && confirm !== ''" class="text-center text-fix">
+        <ion-text color="danger">Las contraseñas no coinciden</ion-text>
+      </div>
+
+      <br>
+
+      <ion-item lines="none">
+        <ion-checkbox (ionChange)="terminos($event)" size="large" mode="md" color="danger"></ion-checkbox>
+        <ion-label class="check-label">Acepto los términos y condiciones.</ion-label>
+      </ion-item>
+
+      <div class="text-center">
+        <button type="submit" (click)="createUser()" class="btn btn-info waves-effect waves-light">
+          Registrarse
+        </button>
+      </div>
+    </div>
+  </div>
+</ion-content>

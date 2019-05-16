@@ -9,6 +9,9 @@ import { MethodsService } from '../services/methods.service';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
+// Hash
+import { Md5 } from 'ts-md5/dist/md5';
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -23,7 +26,8 @@ export class Tab1Page implements OnInit {
     private clipboard: Clipboard,
     public loadCtrl: LoadingController,
     private screenOrientation: ScreenOrientation,
-    public metodos: MethodsService
+    public metodos: MethodsService,
+    public md5: Md5
   ) {}
 
   ngOnInit() {
@@ -93,6 +97,10 @@ export class Tab1Page implements OnInit {
       }`;
       this.presentLoading();
     }
+  }
+
+  mostrar() {
+    this.metodos.presentToast(this.md5.appendStr('Esto es un hash').end() + '', 2, 'danger');
   }
 
   clearAll() {

@@ -21,12 +21,16 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
-// Component
+// Components
 import { EstadisticasComponent } from 'src/app/components/estadisticas/estadisticas.component';
+import { SignUpComponent } from 'src/app/components/sign-up/sign-up.component';
+
+// Hash
+import { Md5 } from 'ts-md5/dist/md5';
 
 @NgModule({
-  declarations: [AppComponent, EstadisticasComponent],
-  entryComponents: [EstadisticasComponent],
+  declarations: [AppComponent, EstadisticasComponent, SignUpComponent],
+  entryComponents: [EstadisticasComponent, SignUpComponent],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -42,6 +46,7 @@ import { EstadisticasComponent } from 'src/app/components/estadisticas/estadisti
     Clipboard,
     ScreenOrientation,
     BarcodeScanner,
+    Md5,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
